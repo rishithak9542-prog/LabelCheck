@@ -1,0 +1,31 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Scan a packaged product</h1>
+<p>Choose a clear photo of the package label.</p>
+
+<form action="{{ url_for('scan') }}"
+      method="POST"
+      enctype="multipart/form-data">
+
+    <label for="image">Product label image</label>
+    <input type="file"
+           id="image"
+           name="image"
+           accept=".png,.jpg,.jpeg,.webp,.bmp"
+           required>
+
+    <p id="filename">No file selected</p>
+
+    <button type="submit">Extract text and analyse</button>
+</form>
+
+<script>
+document.getElementById("image").addEventListener("change", function () {
+    document.getElementById("filename").textContent =
+        this.files.length ? this.files[0].name : "No file selected";
+});
+</script>
+{% endblock %}

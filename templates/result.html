@@ -1,0 +1,57 @@
+
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Label screening results</h1>
+
+    <p>Image file: {{ filename }}</p>
+
+    {% if error_message %}
+        <div class="notice">
+            <strong>OCR message:</strong>
+            {{ error_message }}
+        </div>
+    {% endif %}
+
+    <div class="panel">
+        <h2>Extracted text</h2>
+
+        {% if extracted_text %}
+            <pre style="white-space: pre-wrap; overflow-wrap: anywhere;">{{ extracted_text }}</pre>
+        {% else %}
+            <p>No text was extracted. Check the OCR message above.</p>
+        {% endif %}
+    </div>
+
+    <div class="panel">
+        <h2>Declaration screening</h2>
+
+        {% if checks %}
+            {% for check in checks %}
+                <div style="padding: 12px 0; border-bottom: 1px solid #ddd;">
+                    <strong>{{ check.field }}</strong>
+                    <p>Status: {{ check.status }}</p>
+                    <p>Evidence: {{ check.evidence }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Screening could not be performed without extracted text.</p>
+        {% endif %}
+    </div>
+
+    <div class="notice">
+        Preliminary screening only. OCR can miss text.
+        These results are not a final legal compliance decision.
+    </div>
+
+    <p>
+        <a href="{{ url_for('scan') }}" class="btn">
+            Scan another product
+        </a>
+    </p>
+</div>
+{% endblock %}

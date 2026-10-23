@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+{% block title %}Scan History | LabelCheck{% endblock %}
+{% block content %}
+<h1>Scan history</h1>
+<p>Previously uploaded images and OCR results.</p>
+
+<section class="panel">
+    {% if records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Image file</th>
+                    <th>Date</th>
+                    <th>Extracted text</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record['filename'] }}</td>
+                    <td>{{ record['scan_date'] }}</td>
+                    <td><pre>{{ record['extracted_text'] or 'No text extracted' }}</pre></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No scans yet. Upload a product image to get started.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% block title %}Home | LabelCheck{% endblock %}
+{% block content %}
+<section class="hero">
+    <p class="eyebrow">LEGAL METROLOGY · PACKAGED COMMODITIES</p>
+    <h1>Check product labels.<br><span>With more confidence.</span></h1>
+    <p>Upload a packaged product image, extract printed declarations with OCR,
+       and identify fields that need further review.</p>
+    <a class="button" href="{{ url_for('scan') }}">Start a product check →</a>
+</section>
+
+<section class="cards">
+    <article>
+        <h3>01 · Image Upload</h3>
+        <p>Upload a clear image of the product package.</p>
+    </article>
+    <article>
+        <h3>02 · OCR Extraction</h3>
+        <p>Extract visible printed text using Tesseract OCR.</p>
+    </article>
+    <article>
+        <h3>03 · Declaration Review</h3>
+        <p>Screen key label fields for further inspection.</p>
+    </article>
+</section>
+{% endblock %}
